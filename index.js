@@ -8,6 +8,19 @@ const axios = require('axios');
 const async = require('async')
   
 
+//**if (codeBadge === nodeJS) {
+//console.log('nodeJS')}
+//switch  (codeBadge === javascript){
+ // console.log('javacsript')}
+  //elseif (codeBadge === html){
+  //console.log('html')}
+  //elseif (codeBadge === css){
+  //console.log('css')}
+  //else{
+  //console.log('other')
+//} 
+
+
   
   
 getGitHubUser()
@@ -23,7 +36,9 @@ getGitHubUser()
     console.log('Successfully wrote to readme.md')
     //console.log(avatarurl)
     promptUser()
+    
     .then(function (answers2) {
+
       const html = generateHTML(answers2)
       return appendFileP('readme.md', html)
     })
@@ -41,6 +56,13 @@ getGitHubUser()
     console.error(err)
   })
   
+  
+
+  //const md3 = generateREADME3(answers3)
+  //return appendFileP('readme.md', md)
+  //console.log (answers.User)
+  //console.log (answers.userGitHub2)
+
   function generateREADME (answers) {
     
     return `
@@ -58,7 +80,23 @@ async function getGitHubUser () {
       name: 'User'
       
       })
+      const badge2 = await inquirer.prompt({
+        type: 'input',
+        name: 'codeBadge',
+        message: 'What language was the code written in?'
       
+      })
+      if (badge2.codeBadge === 'nodeJS') {
+        writeFileP('readme.md', '![alt text](https://img.shields.io/badge/build-nodeJS-brightgreen)' + '\n')
+      } else if (badge2.codeBadge ==='javascript'){
+        writeFileP('readme.md', '![alt text](https://img.shields.io/badge/build-javascript-green)' + '\n')        } 
+        else if (badge2.codeBadge ==='html'){
+          writeFileP('readme.md', '![alt text](https://img.shields.io/badge/build-html-yellowgreen)' + '\n')
+      } else if (badge2.codeBadge ==='css'){
+        writeFileP('readme.md', '![alt text](https://img.shields.io/badge/build-css-yellow)' + '\n')
+      } else {
+        writeFileP('readme.md', '![alt text](https://img.shields.io/badge/build-other%20-orange)' + '\n')
+      }
       const response = await axios.get(
       
         `https://api.github.com/users/${userGitHub.User}`  
@@ -68,7 +106,7 @@ async function getGitHubUser () {
         console.log(id)
         const avatarurl = '![alt text](' + 'https://avatars0.githubusercontent.com/u/'+ id + '?v=4)'
         console.log (avatarurl)
-        writeFileP('readme.md', avatarurl + '\n')
+        appendFileP('readme.md', avatarurl + '\n')
         appendFileP('readme.md', 'https://img.shields.io/gitter/room/mrmikehoyt/hw3demo' + '\n')
         //return response.data.avatar_url
        //const id =  response.query.id; // $_GET["id"]
@@ -101,6 +139,7 @@ async function getGitHubUser () {
         name: 'title',
         message: 'What is the title?'
       },
+      
       {
         type: 'input',
         name: 'description',
@@ -128,6 +167,8 @@ async function getGitHubUser () {
       }
     ])
   }
+
+  
   
   function generateHTML (answers2) {
     return `
@@ -145,4 +186,47 @@ async function getGitHubUser () {
   }
         
       
-  
+  async function badge () {
+    try {
+        const badge2 = await inquirer.prompt({
+          type: 'input',
+          name: 'codeBadge',
+          message: 'What language was the code written in?'
+        
+        })
+        
+        if (badge2 === 'nodeJS') {
+          appendFileP('readme.md', 'nodejs' + '\n')
+        } else if (badge2 ==='javascript'){
+          appendFileP('readme.md', 'javascript' + '\n')        } 
+          else if (badge2 ==='html'){
+            appendFileP('readme.md', 'html' + '\n')
+        } else if (badge2 ==='css'){
+          appendFileP('readme.md', 'css' + '\n')
+        } else {
+          appendFileP('readme.md', 'other' + '\n')
+        }
+          //const id = response.data.id 
+          //console.log(id)
+          //const avatarurl = '![alt text](' + 'https://avatars0.githubusercontent.com/u/'+ id + '?v=4)'
+          //console.log (avatarurl)
+         
+          //appendFileP('readme.md', 'https://img.shields.io/gitter/room/mrmikehoyt/hw3demo' + '\n')
+          //return response.data.avatar_url
+         //const id =  response.query.id; // $_GET["id"]
+        //console.log (response.data.id)
+        
+                 //return userGitHub2
+          //console.log(userGitHub)  
+        //return response.data.avatarurl
+  //            return getGitHubUser
+        //return title
+      
+          
+      } catch (err) {
+        console.log(err)
+        
+      }
+      //return (response.data.avatar_url)  
+      //return response
+      }
