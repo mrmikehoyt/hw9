@@ -7,22 +7,38 @@
     
     
     #Here is the title  
-    this
+    Readme Generator
     ##Here is the description  
-    that
+    This application generates a readme file
     ##Here is the table of contents 
-    t
+    1. Pre requisites
+2. Generating readme file
     ##Here are the installation steps 
-    t
+    NodeJs and Visual Studio Code need to be installed and a 
+github account is needed
+after pulling donw the code these prerequisites need to be 
+installed using npm install
+
+inquirer
+util
+fs
+request
+axios
+async
     ##Here is the usage of the application 
-    t
+    Run node index.js
+answer the questions that are presented to you
+your readme.md file is generated or updated after the
+questions are answered
     ##Here is the license  
-    this
+    there is no license that I'm aware of
     ##Here is who helped  
-    me
+    Myself
     ##Here are the tests performed 
-    n
+    The only tests that were peformed was using console.log
+running the code and selecting different options for the language
+
     ##Here are the questions  
-    ll  
+    why is a list not working using inquirer  
      
     
